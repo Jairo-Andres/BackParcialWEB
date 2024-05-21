@@ -1,0 +1,10 @@
+<h1>Celular Details</h1>
+<div *ngIf="celular">
+  <p>Marca: {{ celular.marca }}</p>
+  <p>Serial: {{ celular.serial }}</p>
+  <p>Fecha de Compra: {{ celular.fechaCompra | date }}</p>
+  <p>Año de Lanzamiento: {{ celular.anoLanzamiento }}</p>
+  <p>Precio: {{ celular.precio }}</p>
+  <p>Sistema Operativo: {{ celular.sistemaOperativo }}</p>
+  <p>Gama: {{ celular.gama }}</p>
+</div>

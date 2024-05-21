@@ -1,0 +1,6 @@
+<h1>Lista de Celulares</h1>
+<ul>
+  <li *ngFor="let celular of celulares">
+    {{ celular.marca }} - {{ celular.serial }} - {{ celular.fechaCompra | date }} - {{ celular.anoLanzamiento }} - {{ celular.precio }} - {{ celular.sistemaOperativo }} - {{ celular.gama }}
+  </li>
+</ul>
