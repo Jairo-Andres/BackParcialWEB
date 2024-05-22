@@ -1,36 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { CelularService } from '../../services/celular.service';
 import { Celular } from '../../models/celular';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-update',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './update.component.html',
-  styleUrls: ['./update.component.css']
+  styleUrls: ['./update.component.css'],
+  standalone: true,
+  imports: [FormsModule]
 })
-export class UpdateComponent implements OnInit {
-  celular: Celular | undefined;
-  id!: number;
+export class UpdateComponent {
+  celular: Celular = new Celular();
 
-  constructor(private route: ActivatedRoute, private router: Router, private celularService: CelularService) {
-    this.id = this.route.snapshot.params['id'];
-  }
+  constructor(private celularService: CelularService) {}
 
-  ngOnInit(): void {
-    this.celularService.getCelular(this.id).subscribe((data: Celular) => {
-      this.celular = data;
+  updateCelular() {
+    this.celularService.update(this.celular).then(response => {
+      console.log('Celular actualizado: ', response);
     });
-  }
-
-  updateCelular(): void {
-    if (this.celular) {
-      this.celularService.updateCelular(this.celular).subscribe(() => {
-        this.router.navigate(['/get-all']);
-      });
-    }
   }
 }

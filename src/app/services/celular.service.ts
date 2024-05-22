@@ -1,38 +1,52 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import axios from 'axios';
 import { Celular } from '../models/celular';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class CelularService {
-    private apiUrl = 'http://localhost:8080/parcial/celulares';
+  private url = "http://localhost:8080/parcial/celulares";
 
-    constructor(private http: HttpClient) { }
+  constructor() { }
 
-    // Obtener todos los celulares
-    getAllCelulares(): Observable<Celular[]> {
-        return this.http.get<Celular[]>(this.apiUrl);
-    }
+  // Servicio GET ALL de Celular
+  getAll(): Promise<Celular[]> {
+    return axios.get(this.url).then(response => {
+      console.log("Datos obtenidos: ", response.data);
+      return response.data;
+    });
+  }
 
-    // Obtener un celular por ID
-    getCelular(id: number): Observable<Celular> {
-        return this.http.get<Celular>(`${this.apiUrl}/${id}`);
-    }
 
-    // Crear un nuevo celular
-    createCelular(celular: Celular): Observable<Celular> {
-        return this.http.post<Celular>(this.apiUrl, celular);
-    }
+  // Servicio GET de Celular por ID
+  getById(id: number): Promise<Celular> {
+    return axios.get(`${this.url}/${id}`).then(response => {
+      console.log("Celular obtenido: ", response.data);
+      return response.data;
+    });
+  }
 
-    // Actualizar un celular existente
-    updateCelular(celular: Celular): Observable<Celular> {
-        return this.http.put<Celular>(this.apiUrl, celular);
-    }
+  // Servicio POST para crear un nuevo Celular
+  create(celular: Celular): Promise<Celular> {
+    return axios.post(this.url, celular).then(response => {
+      console.log("Celular creado: ", response.data);
+      return response.data;
+    });
+  }
 
-    // Eliminar un celular
-    deleteCelular(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/${id}`);
-    }
+  // Servicio PUT para actualizar un Celular existente
+  update(celular: Celular): Promise<Celular> {
+    return axios.put(this.url, celular).then(response => {
+      console.log("Celular actualizado: ", response.data);
+      return response.data;
+    });
+  }
+
+  // Servicio DELETE para eliminar un Celular por ID
+  delete(id: number): Promise<void> {
+    return axios.delete(`${this.url}/${id}`).then(response => {
+      console.log("Celular eliminado");
+    });
+  }
 }

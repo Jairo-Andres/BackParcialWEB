@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CelularService } from '../../services/celular.service';
 import { Celular } from '../../models/celular';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-get-all',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './get-all.component.html',
-  styleUrls: ['./get-all.component.css']
+  styleUrls: ['./get-all.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class GetAllComponent implements OnInit {
+export class GetAllComponent {
   celulares: Celular[] = [];
 
-  constructor(private celularService: CelularService) {}
+  constructor(private celularService: CelularService) {
+    this.getAllCelulares();
+  }
 
-  ngOnInit(): void {
-    this.celularService.getAllCelulares().subscribe((data: Celular[]) => {
-      this.celulares = data;
+  getAllCelulares() {
+    this.celularService.getAll().then(response => {
+      this.celulares = response;
+      console.log('Todos los celulares: ', this.celulares);
+    }).catch(error => {
+      console.error('Error obteniendo los celulares: ', error);
     });
   }
 }

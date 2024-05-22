@@ -1,1 +1,5 @@
-<h1>Deleting Celular...</h1>
+<form (ngSubmit)="deleteCelular()">
+    <input [(ngModel)]="id" placeholder="ID del Celular" name="id" type="number" required>
+    <button type="submit">Eliminar Celular</button>
+  </form>
+  

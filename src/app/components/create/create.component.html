@@ -1,25 +1,10 @@
-<h1>Create Celular</h1>
 <form (ngSubmit)="createCelular()">
-  <label>Marca:
-    <input [(ngModel)]="celular.marca" name="marca" required>
-  </label>
-  <label>Serial:
-    <input [(ngModel)]="celular.serial" name="serial" required>
-  </label>
-  <label>Fecha de Compra:
-    <input [(ngModel)]="celular.fechaCompra" name="fechaCompra" type="date" required>
-  </label>
-  <label>Año de Lanzamiento:
-    <input [(ngModel)]="celular.anoLanzamiento" name="anoLanzamiento" type="number" required>
-  </label>
-  <label>Precio:
-    <input [(ngModel)]="celular.precio" name="precio" type="number" required>
-  </label>
-  <label>Sistema Operativo:
-    <input [(ngModel)]="celular.sistemaOperativo" name="sistemaOperativo" required>
-  </label>
-  <label>Gama:
-    <input [(ngModel)]="celular.gama" name="gama" required>
-  </label>
-  <button type="submit">Crear</button>
+  <input [(ngModel)]="celular.marca" placeholder="Marca" name="marca" required>
+  <input [(ngModel)]="celular.serial" placeholder="Serial" name="serial" required>
+  <input [(ngModel)]="celular.fechaCompra" placeholder="Fecha de Compra" name="fechaCompra" type="date" required>
+  <input [(ngModel)]="celular.anoLanzamiento" placeholder="Año de Lanzamiento" name="anoLanzamiento" type="number" required>
+  <input [(ngModel)]="celular.precio" placeholder="Precio" name="precio" type="number" required>
+  <input [(ngModel)]="celular.sistemaOperativo" placeholder="Sistema Operativo" name="sistemaOperativo" required>
+  <input [(ngModel)]="celular.gama" placeholder="Gama" name="gama" required>
+  <button type="submit">Crear Celular</button>
 </form>

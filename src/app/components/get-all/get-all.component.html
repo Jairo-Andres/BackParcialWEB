@@ -1,6 +1,22 @@
-<h1>Lista de Celulares</h1>
-<ul>
-  <li *ngFor="let celular of celulares">
-    {{ celular.marca }} - {{ celular.serial }} - {{ celular.fechaCompra | date }} - {{ celular.anoLanzamiento }} - {{ celular.precio }} - {{ celular.sistemaOperativo }} - {{ celular.gama }}
-  </li>
-</ul>
+<div>
+  <button (click)="getAllCelulares()">Obtener Todos los Celulares</button>
+</div>
+<div *ngIf="celulares && celulares.length">
+  <div *ngFor="let celular of celulares">
+    <p>ID: {{celular.id}}</p>
+    <p>Marca: {{celular.marca}}</p>
+    <p>Serial: {{celular.serial}}</p>
+    <p>Fecha de Compra: {{celular.fechaCompra}}</p>
+    <p>Año de Lanzamiento: {{celular.anoLanzamiento}}</p>
+    <p>Precio: {{celular.precio}}</p>
+    <p>Sistema Operativo: {{celular.sistemaOperativo}}</p>
+    <p>Gama: {{celular.gama}}</p>
+    <hr>
+  </div>
+</div>
+<div *ngIf="celulares && !celulares.length">
+  <p>No hay celulares disponibles.</p>
+</div>
+<div *ngIf="!celulares">
+  <p>Obteniendo datos...</p>
+</div>

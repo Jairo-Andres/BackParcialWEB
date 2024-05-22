@@ -1,26 +1,22 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CelularService } from '../../services/celular.service';
-import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-delete',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.css']
+  styleUrls: ['./delete.component.css'],
+  standalone: true,
+  imports: [FormsModule]
 })
 export class DeleteComponent {
   id!: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private celularService: CelularService) {
-    this.id = this.route.snapshot.params['id'];
-    this.deleteCelular();
-  }
+  constructor(private celularService: CelularService) {}
 
-  deleteCelular(): void {
-    this.celularService.deleteCelular(this.id).subscribe(() => {
-      this.router.navigate(['/get-all']);
+  deleteCelular() {
+    this.celularService.delete(this.id).then(() => {
+      console.log('Celular eliminado');
     });
   }
 }

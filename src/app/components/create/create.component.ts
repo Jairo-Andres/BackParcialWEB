@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { CelularService } from '../../services/celular.service';
 import { Celular } from '../../models/celular';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.css'],
+  standalone: true,
+  imports: [FormsModule]
 })
 export class CreateComponent {
-  celular: Celular = new Celular('', '', new Date(), 0, 0, '', '');
+  celular: Celular = new Celular();
 
-  constructor(private celularService: CelularService, private router: Router) {}
+  constructor(private celularService: CelularService) {}
 
-  createCelular(): void {
-    this.celularService.createCelular(this.celular).subscribe(() => {
-      this.router.navigate(['/get-all']);
+  createCelular() {
+    this.celularService.create(this.celular).then(response => {
+      console.log('Celular creado: ', response);
     });
   }
 }

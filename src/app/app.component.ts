@@ -13,6 +13,10 @@ export class AppComponent {
 
   constructor(private router: Router) { } 
 
+  ngOnInit(): void {
+    // Aquí puedes agregar cualquier lógica adicional que necesites durante la inicialización del componente
+  } 
+
   getAll(){
     this.router.navigate(["getAll"]);
   }
